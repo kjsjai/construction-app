@@ -1,0 +1,10 @@
+node_modules
+.git
+.env
+.env.*.local
+*.sqlite
+*.sqlite3
+*.db
+README.md
+Dockerfile
+.dockerignore

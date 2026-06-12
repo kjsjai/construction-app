@@ -1,0 +1,1698 @@
+SQLite format 3
+tableexpensesexpenses
+CREATE TABLE expenses (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  date TEXT NOT NULL,
+  description TEXT NOT NULL,
+  quantity REAL,
+  unit TEXT,
+  rate REAL,
+  amount REAL NOT NULL,
+  category_id INTEGER REFERENCES categories(id),
+  phase_id INTEGER REFERENCES phases(id),
+  payment_source TEXT,
+  vendor TEXT,
+  notes TEXT,
+  created_at TEXT DEFAULT (datetime('now')),
+  updated_at TEXT DEFAULT (datetime('now'))
+, import_id INTEGER REFERENCES import_history(id), payment_mode TEXT, subcategory_text TEXT)
+tableimport_historyimport_history
+CREATE TABLE import_history (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        filename TEXT NOT NULL,
+        import_date TEXT NOT NULL,
+        row_count INTEGER NOT NULL,
+        total_amount REAL NOT NULL,
+        status TEXT NOT NULL,
+        imported_by TEXT,
+        created_at TEXT DEFAULT (datetime('now'))
+      )
+)tablecategoriescategories
+CREATE TABLE categories (
+  name TEXT NOT NULL UNIQUE,
+  color TEXT NOT NULL,
+  icon TEXT,
+  description TEXT,
+  created_at TEXT DEFAULT (datetime('now'))
+, parent_id INTEGER REFERENCES categories(id), budget_limit REAL DEFAULT 0)
+7tableuser_sessionsuser_sessions
+CREATE TABLE user_sessions (
+  user_id INTEGER REFERENCES users(id),
+  refresh_token TEXT NOT NULL,
+  expires_at TEXT NOT NULL,
+Wtableusersusers
+CREATE TABLE users (
+  name TEXT NOT NULL,
+  email TEXT NOT NULL UNIQUE,
+  username TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'viewer',
+  status TEXT DEFAULT 'active',
+  last_login TEXT,
+indexsqlite_autoindex_users_2users
+indexsqlite_autoindex_users_1users
+atablerepaymentsrepayments
+CREATE TABLE repayments (
+  fund_id INTEGER REFERENCES funds(id),
+  repayment_type TEXT,
+}tablefundsfunds
+CREATE TABLE funds (
+  source_type TEXT NOT NULL,
+  source_name TEXT NOT NULL,
+  account_number TEXT,
+  bank_name TEXT,
+  interest_rate REAL,
+  tenure_months INTEGER,
+  repaid_amount REAL DEFAULT 0,
+Ktableexpensesexpenses
+etablephasesphases
+CREATE TABLE phases (
+  start_date TEXT,
+  end_date TEXT,
+  status TEXT DEFAULT 'active'
+Ytablesqlite_sequencesqlite_sequence
+CREATE TABLE sqlite_sequence(name,seq)
+tablecategoriescategories
+  created_at TEXT DEFAULT (datetime('
+indexsqlite_autoindex_categories_1categories
+Carpentry (First Floor Roof)#94A3B8tagCarpentry expenses for First Floor Roof2026-06-08 18:32:01 z!
+Engineer Contract (First Floor Roof)#94A3B8tagEngineer Contract expenses for First Floor Roof2026-06-08 18:32:01 ` 
+First Floor Roof#6366F1hammerConstruction Stage: First Floor Roof2026-06-08 18:32:01
+Other Expenses (Ground Floor Roof)#94A3B8tagOther Expenses expenses for Ground Floor Roof2026-06-08 18:32:01
+Miscellaneous (Ground Floor Roof)#94A3B8tagMiscellaneous expenses for Ground Floor Roof2026-06-08 18:32:01
+Plumbing (Ground Floor Roof)#94A3B8tagPlumbing expenses for Ground Floor Roof2026-06-08 18:32:01
+Electrical (Ground Floor Roof)#94A3B8tagElectrical expenses for Ground Floor Roof2026-06-08 18:32:01
+Construction Materials (Ground Floor Roof)#94A3B8tagConstruction Materials expenses for Ground Floor Roof2026-06-08 18:32:01
+Laterite Bricks (Ground Floor Roof)#94A3B8tagLaterite Bricks expenses for Ground Floor Roof2026-06-08 18:32:01
+Wood Acquire (Ground Floor Roof)#94A3B8tagWood Acquire expenses for Ground Floor Roof2026-06-08 18:32:01
+Carpentry (Ground Floor Roof)#94A3B8tagCarpentry expenses for Ground Floor Roof2026-06-08 18:32:01
+Engineer Contract (Ground Floor Roof)#94A3B8tagEngineer Contract expenses for Ground Floor Roof2026-06-08 18:32:01
+Ground Floor Roof#6366F1hammerConstruction Stage: Ground Floor Roof2026-06-08 18:32:01
+Other Expenses (Ground Floor Lintel Casting)#94A3B8tagOther Expenses expenses for Ground Floor Lintel Casting2026-06-08 18:32:01
+Miscellaneous (Ground Floor Lintel Casting)#94A3B8tagMiscellaneous expenses for Ground Floor Lintel Casting2026-06-08 18:32:01
+Plumbing (Ground Floor Lintel Casting)#94A3B8tagPlumbing expenses for Ground Floor Lintel Casting2026-06-08 18:32:01
+Electrical (Ground Floor Lintel Casting)#94A3B8tagElectrical expenses for Ground Floor Lintel Casting2026-06-08 18:32:01
+Construction Materials (Ground Floor Lintel Casting)#94A3B8tagConstruction Materials expenses for Ground Floor Lintel Casting2026-06-08 18:32:01
+Laterite Bricks (Ground Floor Lintel Casting)#94A3B8tagLaterite Bricks expenses for Ground Floor Lintel Casting2026-06-08 18:32:01
+Wood Acquire (Ground Floor Lintel Casting)#94A3B8tagWood Acquire expenses for Ground Floor Lintel Casting2026-06-08 18:32:01
+Carpentry (Ground Floor Lintel Casting)#94A3B8tagCarpentry expenses for Ground Floor Lintel Casting2026-06-08 18:32:01
+Engineer Contract (Ground Floor Lintel Casting)#94A3B8tagEngineer Contract expenses for Ground Floor Lintel Casting2026-06-08 18:32:01
+Ground Floor Lintel Casting#6366F1hammerConstruction Stage: Ground Floor Lintel Casting2026-06-08 18:32:01
+Other Expenses (Basement)#94A3B8tagOther Expenses expenses for Basement2026-06-08 18:32:01
+Miscellaneous (Basement)#94A3B8tagMiscellaneous expenses for Basement2026-06-08 18:32:01
+Plumbing (Basement)#94A3B8tagPlumbing expenses for Basement2026-06-08 18:32:01
+Electrical (Basement)#94A3B8tagElectrical expenses for Basement2026-06-08 18:32:01
+Construction Materials (Basement)#94A3B8tagConstruction Materials expenses for Basement2026-06-08 18:32:01
+Laterite Bricks (Basement)#94A3B8tagLaterite Bricks expenses for Basement2026-06-08 18:32:01
+Wood Acquire (Basement)#94A3B8tagWood Acquire expenses for Basement2026-06-08 18:32:01
+Carpentry (Basement)#94A3B8tagCarpentry expenses for Basement2026-06-08 18:32:01
+Engineer Contract (Basement)#94A3B8tagEngineer Contract expenses for Basement2026-06-08 18:32:01
+Basement#6366F1hammerConstruction Stage: Basement2026-06-08 18:32:01
+Construction Stages#3B82F6building-2Main construction phases tied to loan disbursements2026-06-0
+Loan AccountT
+Owner Contribution (OC)S
+Land & PropertyR$
+Other Expenses (Ready to Occupy)Q#
+Miscellaneous (Ready to Occupy)P
+Plumbing (Ready to Occupy)O 
+Electrical (Ready to Occupy)N,
+Construction Materials (Ready to Occupy)M%
+Laterite Bricks (Ready to Occupy)L"
+Wood Acquire (Ready to Occupy)K
+Carpentry (Ready to Occupy)J'
+Engineer Contract (Ready to Occupy)I
+Ready to OccupyH3
+Other Expenses (Fittings, Painting & Finishing)G2
+Miscellaneous (Fittings, Painting & Finishing)F-
+Plumbing (Fittings, Painting & Finishing)E/
+Electrical (Fittings, Painting & Finishing)D;
+Construction Materials (Fittings, Painting & Finishing)C4
+Laterite Bricks (Fittings, Painting & Finishing)B1
+Wood Acquire (Fittings, Painting & Finishing)A.
+Carpentry (Fittings, Painting & Finishing)@6
+Engineer Contract (Fittings, Painting & Finishing)?"
+Fittings, Painting & Finishing>)
+Other Expenses (Flooring & Joineries)=(
+Miscellaneous (Flooring & Joineries)<#
+Plumbing (Flooring & Joineries);%
+Electrical (Flooring & Joineries):1
+Construction Materials (Flooring & Joineries)9*
+Laterite Bricks (Flooring & Joineries)8'
+Wood Acquire (Flooring & Joineries)7$
+Carpentry (Flooring & Joineries)6,
+Engineer Contract (Flooring & Joineries)5
+Flooring & Joineries4*
+Other Expenses (Plastering Completion)3)
+Miscellaneous (Plastering Completion)2$
+Plumbing (Plastering Completion)1&
+Electrical (Plastering Completion)02
+Construction Materials (Plastering Completion)/+
+Laterite Bricks (Plastering Completion).(
+Wood Acquire (Plastering Completion)-%
+Carpentry (Plastering Completion),-
+Engineer Contract (Plastering Completion)+
+Plastering Completion*%
+Other Expenses (First Floor Roof))$
+Miscellaneous (First Floor Roof)(
+Plumbing (First Floor Roof)'!
+Electrical (First Floor Roof)&-
+Construction Materials (First Floor Roof)%&
+Laterite Bricks (First Floor Roof)$#
+Wood Acquire (First Floor Roof)# 
+Carpentry (First Floor Roof)"(
+Engineer Contract (First Floor Roof)!
+First Floor Roof &
+Other Expenses (Ground Floor Roof)
+Miscellaneous (Ground Floor Roof)
+Plumbing (Ground Floor Roof)
+Electrical (Ground Floor Roof)
+Construction Materials (Ground Floor Roof)
+Laterite Bricks (Ground Floor Roof)
+Wood Acquire (Ground Floor Roof)
+Carpentry (Ground Floor Roof)
+Engineer Contract (Ground Floor Roof)
+Ground Floor Roof
+Other Expenses (Ground Floor Lintel Casting)
+Miscellaneous (Ground Floor Lintel Casting)
+Plumbing (Ground Floor Lintel Casting)
+Electrical (Ground Floor Lintel Casting)
+Construction Materials (Ground Floor Lintel Casting)
+Laterite Bricks (Ground Floor Lintel Casting)
+Wood Acquire (Ground Floor Lintel Casting)
+Carpentry (Ground Floor Lintel Casting)
+Engineer Contract (Ground Floor Lintel Casting)
+Ground Floor Lintel Casting
+Other Expenses (Basement)
+Miscellaneous (Basement)
+Plumbing (Basement)
+Electrical (Basement)
+Construction Materials (Basement)
+Laterite Bricks (Basement)
+Wood Acquire (Basement)
+Carpentry (Basement)
+Engineer Contract (Basement)
+Basement
+Construction Stages
+categoriesT
+users
+user_sessions
+funds
+phases
+expenseses
+Phase 2 
+ First Flooractive"
+Ground Floor Concreteactive%
+Phase 1 
+ Ground Flooractive%
+Septic Tank Constructionactive
+Foundation Workactive
+Pre-Constructionactive
+;332026-06-08T18:32:01.275ZInitial Land Advance / Purchase
+ROwner ContributionInitial OC spent amount2026-06-08 18:32:012026-06-08 18:32:01
+32023-05-15LoanAnjana Personal Loan 
+10,000 (Closed)'
+active2026-05-16 07:54:33
+32023-05-01LoanSachin Personal Loan 
+65,000 (Closed)
+32023-01-15CashCash from Deedhu 
+10,00,000
+B@active2026-05-16 07:54:33
+32023-04-01LoanNMG Gold Loan 2 
+2,04,784 @ 7% interest
+32023-02-01LoanNMG Gold Loan 1 
+2,50,118
+32023-06-01Low
+332026-06-08T18:32:01.275ZCash/BankOwner ContributionOC-2001
+`activeSelf-funded portion2026-06-08 18:32:01
+k32026-06-08T18:32:01.274ZLoanBank Construction LoanLOAN-1001[
+activeDisbursed in 7 tranches of 9L + 1 tranche of 6L2026-06-08 18:32:01
+333jaikjsjai@gmail.comjai$2b$10$p32lBuIK1/ILAwFYo3XWA.uDuRHcUPWXjo2VCkWSr3purOPsBGUaWadminactive2026-06-08 18:32:482026-05-16 12:08:022026-05-16 12:08:02
+333Administratoradmin@example.comadmin$2b$10$mKX4CU82crR0rdmlDxXe7e3ohjCkGyRBiMwENkLzDO7YEKdSLSI2Oadminactive2026-05-16 13:32:032026-05-16 07:54:332026-05-16 07:54:33
+kjsjai@gmail.com
+admin@example.com
+admin
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgwOTQzNTY4LCJleHAiOjE3ODE1NDgzNjh9.hyJFiw61msy3pfidmYoYXp5TWgiFVN-NuVPyNbxJcKQ2026-06-15 18:32:482026-06-08 18:32:48
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgwOTMyNTk5LCJleHAiOjE3ODE1MzczOTl9.5UvL52swjiJ78YMCba2jaqM9bqASQ8HV58846kjlRaY2026-06-15 15:29:592026-06-08 15:29:59
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgwOTI4ODM2LCJleHAiOjE3ODE1MzM2MzZ9.-9T3Y_KyrL8U3rI6f1lZDZb16FfoBZwsCZTi4PQ-c8Q2026-06-15 14:27:162026-06-08 14:27:16
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzc5Mjc0MDg2LCJleHAiOjE3Nzk4Nzg4ODZ9.lWX8kxEhj14_r_mHjsCRxBzqFHKGlbY1YcJRYL1eObs2026-05-27 10:48:062026-05-20 10:48:06
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzc5MjU2NDUxLCJleHAiOjE3Nzk4NjEyNTF9.2roe9pWTG7KmS-CAkdLDQj0BK1PB-LB2haVenDncOZY2026-05-27 05:54:112026-05-20 05:54:11
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzc4OTU3MDI3LCJleHAiOjE3Nzk1NjE4Mjd9.eOHusURWr4f7B-GTZlCWo9aNB-dpZroTTjWU8sGfQCE2026-05-23 18:43:472026-05-16 18:43:47
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzc4OTQ3OTI3LCJleHAiOjE3Nzk1NTI3Mjd9.XLuAns4dLFTBhX18kX5jlCxRizXIv34XLIRIyxGgIGk2026-05-23 16:12:072026-05-16 16:12:07
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzc4OTM4NjA1LCJleHAiOjE3Nzk1NDM0MDV9.KM25iO9nocgJQ4v4CqnOBivOlS3C3CRCDZ0bYwcVRNY2026-05-23 13:36:452026-05-16 13:36:45
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc4OTM4MzIzLCJleHAiOjE3Nzk1NDMxMjN9.fUI1Rp1-_5-NNwM4wwlr_rNnjNpPJJ1W5SqliTichKE2026-05-23 13:32:032026-05-16 13:32:03
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc4OTM3Njk0LCJleHAiOjE3Nzk1NDI0OTR9.YXGPgrFxLN1j_Hpge360WoVMVEw3FFainFeAle6lWv42026-05-23 13:21:342026-05-16 13:21:34
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc4OTM3NjQ1LCJleHAiOjE3Nzk1NDI0NDV9.T67znBGbPUlUuIPNZRco61awCcjTICBOjm0Az_0pJRo2026-05-23 13:20:452026-05-16 13:20:45
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc4OTM3NDM4LCJleHAiOjE3Nzk1NDIyMzh9.I93HBqoIzB5--JB89PqjIR6Bj1cHv87MxiT8aAQr8JA2026-05-23 13:17:182026-05-16 13:17:18
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzc4OTM2NjgxLCJleHAiOjE3Nzk1NDE0ODF9.YQayPsM7uxoiFlHKxxwx1wmy-32VlTsB_R1WKvgFmf82026-05-23 13:04:412026-05-16 13:04:41
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzc4OTMzMjk4LCJleHAiOjE3Nzk1MzgwOTh9.afRbEoA9DMXzIKjikdXMA9bzytXATzFhPh7yW2mNmxA2026-05-23 12:08:182026-05-16 12:08:18
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc4OTMyMzUxLCJleHAiOjE3Nzk1MzcxNTF9.EK1_hqi35_oyUFNztH1IqIbtq75E77nZIn6jDMHgPd02026-05-23 11:52:312026-05-16 11:52:31
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc4OTI0NjY2LCJleHAiOjE3Nzk1Mjk0NjZ9.sBm2LGF8SHEauXbgLHplV3MdmXUoCPOqhVFlq0ek87c2026-05-23 09:44:262026-05-16 09:44:26
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc4OTE5NzE0LCJleHAiOjE3Nzk1MjQ1MTR9.UICyVlSRvaj920YGltQtwPkELGcSZyUrHM8V1vt4AJU2026-05-23 08:21:542026-05-16 08:21:54
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc4OTE5NTAzLCJleHAiOjE3Nzk1MjQzMDN9.HmL2eyt-3z8wHndMqebT7IzAVm-RK_Y_Jvo0-QEh0zc2026-05-23 08:18:232026-05-16 08:18:23
+Construction Stages#3B82F6building-2Main construction phases tied to loan disbursements2026-06-08 18:32:01
+Laterite Bricks (Fittings, Painting & Finishing)#94A3B8tagLaterite Bricks expenses for Fittings, Painting & Finishing2026-06-08 18:32:01>
+Wood Acquire (Fittings, Painting & Finishing)#94A3B8tagWood Acquire expenses for Fittings, Painting & Finishing2026-06-08 18:32:01>
+Carpentry (Fittings, Painting & Finishing)#94A3B8tagCarpentry expenses for Fittings, Painting & Finishing2026-06-08 18:32:01>
+Engineer Contract (Fittings, Painting & Finishing)#94A3B8tagEngineer Contract expenses for Fittings, Painting & Finishing2026-06-08 18:32:01>|>
+Fittings, Painting & Finishing#6366F1hammerConstruction Stage: Fittings, Painting & Finishing2026-06-08 18:32:01
+Other Expenses (Flooring & Joineries)#94A3B8tagOther Expenses expenses for Flooring & Joineries2026-06-08 18:32:014z<
+Miscellaneous (Flooring & Joineries)#94A3B8tagMiscellaneous expenses for Flooring & Joineries2026-06-08 18:32:014p;
+Plumbing (Flooring & Joineries)#94A3B8tagPlumbing expenses for Flooring & Joineries2026-06-08 18:32:014t:
+Electrical (Flooring & Joineries)#94A3B8tagElectrical expenses for Flooring & Joineries2026-06-08 18:32:014
+Construction Materials (Flooring & Joineries)#94A3B8tagConstruction Materials expenses for Flooring & Joineries2026-06-08 18:32:014~8
+Laterite Bricks (Flooring & Joineries)#94A3B8tagLaterite Bricks expenses for Flooring & Joineries2026-06-08 18:32:014x7
+Wood Acquire (Flooring & Joineries)#94A3B8tagWood Acquire expenses for Flooring & Joineries2026-06-08 18:32:014r6
+Carpentry (Flooring & Joineries)#94A3B8tagCarpentry expenses for Flooring & Joineries2026-06-08 18:32:014
+Engineer Contract (Flooring & Joineries)#94A3B8tagEngineer Contract expenses for Flooring & Joineries2026-06-08 18:32:014h4
+Flooring & Joineries#6366F1hammerConstruction Stage: Flooring & Joineries2026-06-08 18:32:01
+Other Expenses (Plastering Completion)#94A3B8tagOther Expenses expenses for Plastering Completion2026-06-08 18:32:01*|2
+Miscellaneous (Plastering Completion)#94A3B8tagMiscellaneous expenses for Plastering Completion2026-06-08 18:32:01*r1
+Plumbing (Plastering Completion)#94A3B8tagPlumbing expenses for Plastering Completion2026-06-08 18:32:01*v0
+Electrical (Plastering Completion)#94A3B8tagElectrical expenses for Plastering Completion2026-06-08 18:32:01*
+Construction Materials (Plastering Completion)#94A3B8tagConstruction Materials expenses for Plastering Completion2026-06-08 18:32:01*
+Laterite Bricks (Plastering Completion)#94A3B8tagLaterite Bricks expenses for Plastering Completion2026-06-08 18:32:01*z-
+Wood Acquire (Plastering Completion)#94A3B8tagWood Acquire expenses for Plastering Completion2026-06-08 18:32:01*t,
+Carpentry (Plastering Completion)#94A3B8tagCarpentry expenses for Plastering Completion2026-06-08 18:32:01*
+Engineer Contract (Plastering Completion)#94A3B8tagEngineer Contract expenses for Plastering Completion2026-06-08 18:32:01*j*
+Plastering Completion#6366F1hammerConstruction Stage: Plastering Completion2026-06-08 18:32:01
+Other Expenses (First Floor Roof)#94A3B8tagOther Expenses expenses for First Floor Roof2026-06-08 18:32:01 r(
+Miscellaneous (First Floor Roof)#94A3B8tagMiscellaneous expenses for First Floor Roof2026-06-08 18:32:01 h'
+Plumbing (First Floor Roof)#94A3B8tagPlumbing expenses for First Floor Roof2026-06-08 18:32:01 l&
+Electrical (First Floor Roof)#94A3B8tagElectrical expenses for First Floor Roof2026-06-08 18:32:01 
+Construction Materials (First Floor Roof)#94A3B8tagConstruction Materials expenses for First Floor Roof2026-06-08 18:32:01 v$
+Laterite Bricks (First Floor Roof)#94A3B8tagLaterite Bricks expenses for First Floor Roof2026-06-08 18:32:01 p#
+Wood Acquire (First Floor Roof)#94A3B8tagWood Acquire expenses for First Floor Roof2026-06-08 18:32:01 
+Loan Account#EF4444landmarkEMI tracking, disbursement records, interest payments2026-06-08 18:32:01hS
+Owner Contribution (OC)#F59E0BwalletTracking self-funded portion expenses2026-06-08 18:32:01
+Land & Property#10B981mapLand purchase, registration, and survey costs2026-06-08 18:32:01=
+Other Expenses (Ready to Occupy)#94A3B8tagOther Expenses expenses for Ready to Occupy2026-06-08 18:32:01HpP
+Miscellaneous (Ready to Occupy)#94A3B8tagMiscellaneous expenses for Ready to Occupy2026-06-08 18:32:01HfO
+Plumbing (Ready to Occupy)#94A3B8tagPlumbing expenses for Ready to Occupy2026-06-08 18:32:01HjN
+Electrical (Ready to Occupy)#94A3B8tagElectrical expenses for Ready to Occupy2026-06-08 18:32:01H
+Construction Materials (Ready to Occupy)#94A3B8tagConstruction Materials expenses for Ready to Occupy2026-06-08 18:32:01HtL
+Laterite Bricks (Ready to Occupy)#94A3B8tagLaterite Bricks expenses for Ready to Occupy2026-06-08 18:32:01HnK
+Wood Acquire (Ready to Occupy)#94A3B8tagWood Acquire expenses for Ready to Occupy2026-06-08 18:32:01HhJ
+Carpentry (Ready to Occupy)#94A3B8tagCarpentry expenses for Ready to Occupy2026-06-08 18:32:01HxI
+Engineer Contract (Ready to Occupy)#94A3B8tagEngineer Contract expenses for Ready to Occupy2026-06-08 18:32:01H[H
+Ready to Occupy#6366F1hammerConstruction Stage: Ready to Occupy2026-06-08 18:32:01
+Other Expenses (Fittings, Painting & Finishing)#94A3B8tagOther Expenses expenses for Fittings, Painting & Finishing2026-06-08 18:32:01>
+Miscellaneous (Fittings, Painting & Finishing)#94A3B8tagMiscellaneous expenses for Fittings, Painting & Finishing2026-06-08 18:32:01>
+Plumbing (Fittings, Painting & Finishing)#94A3B8tagPlumbing expenses for Fittings, Painting & Finishing2026-06-08 18:32:01>
+Electrical (Fittings, Painting & Finishing)#94A3B8tagElectrical expenses for Fittings, Painting & Finishing2026-06-08 18:32:01>
+Construction Materials (Fittings, Painting & Finishing)#94A3B8tagConstruction Materials expenses for Fittings, Painting & Finishing2026-06-08 18:32:01>
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgwOTQ1OTgzLCJleHAiOjE3ODE1NTA3ODN9.J51Xd_kv3f33mCF8IiV-LE1j_t7nB5t6E1m5P_Kpluc2026-06-15 19:13:032026-06-08 19:13:03
+333Administratoradmin@example.comadmin$2b$10$mKX4CU82crR0rdmlDxXe7e3ohjCkGyRBiMwENkLzDO7YEKdSLSI2Oadminactive2026-06-08 19:13:032026-05-16 07:54:332026-05-16 07:54:33
+333Administratoradmin@example.comadmin$2b$10$dKoxL6VJVHNsfFo.0ADSl.jU604C5DdBFt8si3LRNmAMEOxJoLgciadminactive2026-06-08 19:13:032026-05-16 07:54:332026-05-16 07:54:33
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgwOTQ2MzkyLCJleHAiOjE3ODE1NTExOTJ9.k6dRBf92t1g9ilqcfUKQZr4c3MgNte8ggFATVxRJzkc2026-06-15 19:19:522026-06-08 19:19:52
+333Administratoradmin@example.comadmin$2b$10$dKoxL6VJVHNsfFo.0ADSl.jU604C5DdBFt8si3LRNmAMEOxJoLgciadminactive2026-06-08 19:19:522026-05-16 07:54:332026-05-16 07:54:33
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgwOTQ2NTAxLCJleHAiOjE3ODE1NTEzMDF9.Eoa2t7hdT2BoccP2J-RXE7PUknFvslhxeiIamP73PNQ2026-06-15 19:21:412026-06-08 19:21:41
+333Administratoradmin@example.comadmin$2b$10$dKoxL6VJVHNsfFo.0ADSl.jU604C5DdBFt8si3LRNmAMEOxJoLgciadminactive2026-06-08 19:21:412026-05-16 07:54:332026-05-16 07:54:33
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgwOTQ2NzM5LCJleHAiOjE3ODE1NTE1Mzl9.4HlqH4b4aP_HiS1_D2DXYbmJrhkougGtdNbCt9_ABK02026-06-15 19:25:392026-06-08 19:25:39
+333Administratoradmin@example.comadmin$2b$10$dKoxL6VJVHNsfFo.0ADSl.jU604C5DdBFt8si3LRNmAMEOxJoLgciadminactive2026-06-08 19:25:392026-05-16 07:54:332026-05-16 07:54:33
+333jaikjsjai@gmail.comjai$2b$10$p32lBuIK1/ILAwFYo3XWA.uDuRHcUPWXjo2VCkWSr3purOPsBGUaWadminactive2026-06-08 18:32:482026-05-16 12:08:022026-06-08 19:29:41
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgwOTQ2OTkyLCJleHAiOjE3ODE1NTE3OTJ9.RjTKanMZyLbbVOQjkWgSi7fQ6FuqM3d_CMntT8f9hgQ2026-06-15 19:29:522026-06-08 19:29:52
+333jaikjsjai@gmail.comjai$2b$10$p32lBuIK1/ILAwFYo3XWA.uDuRHcUPWXjo2VCkWSr3purOPsBGUaWadminactive2026-06-08 19:29:522026-05-16 12:08:022026-06-08 19:29:41
+Foundation
+Foundation#6366F1hammerConstruction Stage: Basement2026-06-08 18:32:01
+Electrical (Foundation)
+Other Expenses (
+Other Expenses (Foundation)
+Miscellaneous (Foundation)
+Plumbing (Foundation)
+Construction Materials (Foundation)
+Laterite Bricks (Foundation)
+Wood Acquire (Foundation)
+Carpentry (Foundation)
+Engineer Contract (Foundation)
+Other Expenses (Foundation)#94A3B8tagOther Expenses expenses for Basement2026-06-08 18:32:01
+Miscellaneous (Foundation)#94A3B8tagMiscellaneous expenses for Basement2026-06-08 18:32:01
+Plumbing (Foundation)#94A3B8tagPlumbing expenses for Basement2026-06-08 18:32:01
+Electrical (Foundation)#94A3B8tagElectrical expenses for Basement2026-06-08 18:32:01
+Construction Materials (Foundation)#94A3B8tagConstruction Materials expenses for Basement2026-06-08 18:32:01
+Laterite Bricks (Foundation)#94A3B8tagLaterite Bricks expenses for Basement2026-06-08 18:32:01
+Wood Acquire (Foundation)#94A3B8tagWood Acquire expenses for Basement2026-06-08 18:32:01
+Carpentry (Foundation)#94A3B8tagCarpentry expenses for Basement2026-06-08 18:32:01
+Engineer Contract (Foundation)#94A3B8tagEngineer Contract expenses for Basement2026-06-08 18:32:01
+(ISQLite format 3
+Land Acquisition
+Land Purchase 
+Land Registration 
+Legal Fees 
+Surveying Fees 
+Land Transfer Tax 
+Title Search 
+Boundary Marking 
+Land Valuation 
+Documentation Charges 
+Professional Fees
+Architectural Design 
+Structural Engineering 
+Mechanical Design 
+Electrical Design 
+Plumbing Design 
+Interior Design 
+Quantity Surveying 
+Project Management 
+Permit Consultancy 
+Inspection Fees 
+Environmental Assessmen
+categoriesU
+Environmental Assessment 
+Site Preparation
+Site Clearing 
+Demolition 
+Excavation 
+Backfilling 
+Grading & Leveling 
+Soil Testing 
+Dewatering 
+Temporary Fencing 
+Site Access Road 
+Waste Removal 
+Structure & Foundation
+Footings 
+Foundation Concrete 
+Reinforcement Steel 
+Formwork 
+Columns 
+Beams 
+Slabs 
+Blockwork 
+Structural Steel 
+Waterproofing 
+Retaining Walls 
+Roofing
+Roof Structure 
+Roof Sheets 
+Roof Tiles 
+Roof Insulation 
+Waterproof Membrane 
+Gutters 
+Downpipes 
+Roof Flashings 
+Skylights 
+Roofing Accessories 
+Contractor
+Main Contractor 
+Civil Contractor 
+Structural Contractor 
+Roofing Contractor 
+Mechanical Contractor 
+Electrical Contractor 
+Plumbing Contractor 
+Carpentry Contractor 
+Painting Contractor 
+Finishing Contractor 
+Landscaping Contractor 
+Specialist Contractor 
+Mechanical
+Air Conditioning Units 
+Ventilation Systems 
+Exhaust Fans 
+Ducting 
+Water Pumps 
+Generator Installation 
+Mechanical Equipment 
+Mechanical Accessories 
+Testing & Commissioning 
+Electrical
+Main Power Connection 
+Electrical Wiring 
+Conduits 
+Distribution Boards 
+Circuit Breakers 
+Switches 
+Sockets 
+Interior Lighting 
+Exterior Lighting 
+Generator Wiring 
+Solar System 
+CCTV System 
+Data Network Cabling 
+Electrical Testing 
+Plumbing
+Water Supply Pipes 
+Drainage Pipes 
+Sewer Connection 
+Septic Tank 
+Water Tank 
+Water Pump 
+Water Heater 
+Kitchen Plumbing 
+Bathroom Plumbing 
+Plumbing Fixtures 
+Plumbing Accessories 
+Plumbing Testing 
+Interior Finishes
+Internal Plastering 
+Wall Putty 
+Interior Painting 
+Floor Tiles 
+Wall Tiles 
+Timber Flooring 
+Vinyl Flooring 
+Ceiling Works 
+Gypsum Board 
+Decorative Finishes 
+Interior Doors 
+Door Hardware 
+Glass Works 
+Exterior Works
+Exterior Plastering 
+Exterior Painting 
+Cladding 
+Windows 
+Exterior Doors 
+Balcony Works 
+Veranda Works 
+Driveway Construction 
+Boundary Wall 
+Gates 
+External Stairs 
+Landscaping
+Topsoil 
+Garden Plants 
+Trees 
+Lawn/Turf 
+Irrigation System 
+Garden Lighting 
+Paving Stones 
+Decorative Rocks 
+Water Features 
+Outdoor Furniture 
+Equipment & Tools
+Hand Tools 
+Power Tools 
+Tool Rental 
+Equipment Rental 
+Scaffolding 
+Generator Rental 
+Fuel for Equipment 
+Equipment Maintenance 
+Equipment Repairs 
+Consumables 
+Labor & Contractors
+Skilled Labor 
+General Labor 
+Carpenter Wages 
+Mason Wages 
+Electrician Wages 
+Plumber Wages 
+Painter Wages 
+Helper Wages 
+Overtime Wages 
+Labor Accommodation 
+Labor Meals 
+Labor Transport 
+Utilities
+Construction Electricity 
+Construction Water 
+Internet Service 
+Telephone Service 
+Mobile Communication 
+Generator Fuel 
+Temporary Utility Connections 
+Safety & Insurance
+Worker Insurance 
+Builder's Risk Insurance 
+Public Liability Insurance 
+Site Security 
+PPE Equipment 
+Safety Training 
+First Aid Supplies 
+Fire Extinguishers 
+Safety Signage 
+Compliance Inspection 
+Furniture & Appliances
+Living Room Furniture 
+Bedroom Furniture 
+Dining Furniture 
+Office Furniture 
+Kitchen Appliances 
+Laundry Appliances 
+Air Conditioners 
+Decorative Lighting 
+Curtains & Blinds 
+Mirrors 
+Shelving 
+Home Automation Devices 
+Financing Costs
+Loan Interest 
+Bank Charges 
+Loan Processing Fees 
+Mortgage Fees 
+Financial Advisory Fees 
+Currency Exchange Charges 
+Late Payment Charges 
+Contingency
+Design Changes 
+Variation Orders 
+Material Price Escalation 
+Emergency Repairs 
+Rework Costs 
+Unexpected Site Conditions 
+Miscellaneous Costs 
+Wood Acquisition
+Hardwood 
+Softwood 
+Timber Beams 
+Timb
+er Posts 
+Plywood 
+Marine Plywood 
+MDF Boards 
+Particle Boards 
+Veneer Sheets 
+Imported Timber 
+Local Timber 
+Timber Transport 
+Timber Treatment 
+Timber Storage 
+Timber Waste 
+Carpentry
+Kitchen Cabinets 
+Wardrobes 
+Doors 
+Door Frames 
+Window Frames 
+Staircases 
+Skirting Boards 
+Architraves 
+Ceiling Woodwork 
+Wall Paneling 
+Decking 
+Pergolas 
+Built-in Furniture 
+TV Units 
+Vanity Units 
+Custom Furniture 
+Installation Materials 
+Carpentry Consumables 
+Workshop ExpensesU
+Timber Posts 
+Workshop Expenses#1E293B2026-06-08 20:12:35
+.q>(
+O0[8
+aration
+Enviro
+Land AcquisitionV
+categoriesV
+Land Acquisition#1E293B2026-06-08 20:13:09lT
+.KOi
+Land PurchaseW (
+categoriesW
+Land Purchase#4755692026-06-08 20:13:09V3V
+Inspe
+Land RegistrationX
+categoriesX
+.(gTL
+Roo5X
+Land Registration#4755692026-06-08 20:13:09V1W
+Permit Consult
+Legal FeesY
+categoriesY
+Roof.Y
+Legal Fees#4755692026-06-08 20:13:09V5X
+Surveying FeesZ
+categoriesZ
+.v26
+Structural2Z
+Surveying Fees#4755692026-06-08 20:13:09V.Y
+Land Transfer Tax[
+categories[
+Colum5[
+Land Transfer Tax#4755692026-06-08 20:13:09V2Z
+Quan
+Title Search\
+categories\
+Foundation Concrete0\
+Title Search#4755692026-06-08 20:13:09V5[
+Inte
+Boundary Marking]
+categories]
+Struct4]
+Boundary Marking#4755692026-06-08 20:13:09V0\
+Plumbi
+Land Valuation^
+categories^
+Temporary Fenc2^
+Land Valuation#4755692026-06-08 20:13:09V4]
+Documentation Charges_
+categories_
+Grading & Lev9_
+Documentation Charges#4755692026-06-08 20:13:09V2^
+Mech
+Professional Fees`
+categories`
+Demoliti4`
+Professional Fees#1E293B2026-06-08 20:13:099_
+Structu
+Architectural Designa
+categoriesa
+Environmental As8a
+Architectural Design#4755692026-06-08 20:13:09`4`
+Archit
+Structural Engineeringb
+categoriesb
+Structural Engineering#4755692026-06-08 20:13:09`8a
+Profes
+Mechanical Designc
+categoriesc
+Interior Design5c
+Mechanical Design#4755692026-06-08 20:13:09`:b
+Documen
+Electrical Designd
+categoriesd
+Elec5d
+Electrical Design#4755692026-06-08 20:13:09`5c
+Land Va
+Plumbing Designe
+categoriese
+St3e
+Plumbing Design#4755692026-06-08 20:13:09`5d
+Boundary 
+Interior Designf
+categoriesf
+Documentation Charge3f
+Interior Design#4755692026-06-08 20:13:09`3e
+Titl
+Quantity Surveyingg
+categoriesg
+Bounda6g
+Quantity Surveying#4755692026-06-08 20:13:09`3f
+Land
+Project Managementh
+categoriesh
+Surveying F6h
+Project Management#4755692026-06-08 20:13:09`6g
+Permit Consultancyi
+categoriesi
+Land Purchase6i
+Permit Consultancy#4755692026-06-08 20:13:09`6h
+Inspection Feesj
+categoriesj
+\XfR
+Inspection Fees#4755692026-06-08 20:13:09`6i
+Land Purch
+Environmental Assessmentk
+categoriesk
+Environmental Assessment#4755692026-06-08 20:13:09`3j
+Land Acqui
+Site Preparationl
+categoriesl
+Site Preparation#1E293B2026-06-08 20:13:09<k
+YaW z
+Site Clearingm
+categoriesm
+.*J-
+Site Clearing#4755692026-06-08 20:13:09l3l
+vKA '
+Demolitionn
+."J~
+categoriesn
+Demolition#4755692026-06-08 20:13:09l1m
+.l_It
+Excavationo
+categorieso
+Excavation#4755692026-06-08 20:13:09l.n
+Backfillingp
+categoriesp
+Backfilling#4755692026-06-08 20:13:09l.o
+Grading & Levelingq
+categoriesq
+Grading & Leveling#4755692026-06-08 20:13:09l/p
+Soil Testingr
+categoriesr
+Soil Testing#4755692026-06-08 20:13:09l6q
+Dewaterings
+categoriess
+Dewatering#4755692026-06-08 20:13:09l0r
+=SQLite format 3
+Laterite Bricks (Fittings, Painting & Finishing)B
+categoriest
+Temporary Fencing#4755692026-06-08 20:13:09l.s
+'Site Clearingm
+EPermit Consultancyi
+1Mechanical Designc
+"Surveying FeesZ
+-Loan AccountT
+Land & PropertyR
+hOther Expenses (Ready to Occupy)Q#
+Construction Materials (Ready to Occupy)M
+ILaterite Bricks (Ready to Occupy)L"
+Ready to OccupyH
+Construction Materials (Fittings, Painting & Finishing)C
+gLaterite Bricks (Fittings, Painting & Finishing)B1
+Fittings, Painting & Finishing>
+wOther Expenses (Flooring & Joineries)=(
+Construction Materials (Flooring & Joineries)9
+SLaterite Bricks (Flooring & Joineries)8'
+Flooring & Joineries4
+zOther Expenses (Plastering Completion)3)
+Construction Materials (Plastering Completion)/
+ULaterite Bricks (Plastering Completion).(
+Laterite Bricks (First Floor Roof)$
+$Wood Acquire (First Floor Roof)# 
+First Floor Roof 
+nOther Expenses (Ground Floor Roof)
+MLaterite Bricks (Ground Floor Roof)
+aLaterite Bricks (Ground Floor Lintel Casting)
+YOther Expenses (Foundation)
+?Laterite Bricks (Foundation)
+Wood Acquire (Ready to Occupy)K(
+Wood Acquire (Plastering Completion)-$
+Wood Acquire (Flooring & Joineries)71
+Wood Acquire (Fittings, Painting & Finishing)A#
+Wood Acquire (First Floor Roof)#
+Temporary Fencingt
+Plumbing (Ready to Occupy)O$
+Plumbing (Plastering Completion)1 
+Plumbing (Flooring & Joineries);-
+Plumbing (Fittings, Painting & Finishing)E
+Plumbing (First Floor Roof)'
+Plastering Completion*
+Owner Contribution (OC)S$
+Other Expenses (Ready to Occupy)Q*
+Other Expenses (Plastering Completion)3&
+Other Expenses (Flooring & Joineries)=3
+Other Expenses (Fittings, Painting & Finishing)G%
+Other Expenses (First Floor Roof))#
+Miscellaneous (Ready to Occupy)P)
+Miscellaneous (Plastering Completion)2%
+Miscellaneous (Flooring & Joineries)<2
+Miscellaneous (Fittings, Painting & Finishing)F$
+Legal FeesY%
+Laterite Bricks (Ready to Occupy)L+
+Laterite Bricks (Plastering Completion).'
+Laterite Bricks (Flooring & Joineries)8
+categoriesu
+.s=,
+Site Access Road#4755692026-06-08 20:13:09l5t
+Site Access Roadu"
+.&P_
+categoriesv
+Waste Removal#4755692026-06-08 20:13:09l4u
+Waste Removalv
+gSQLite format 3
+Construction Stages#3B82F6building-2Main construction phases tied to loan disbursements2026
+categoriesw
+Wood Acquisi9w
+Structure & Foundation#1E293B2026-06-08 20:13:09
+Structure & Foundationw
+categoriesx
+Unexpected Site Con,x
+Footings#4755692026-06-08 20:13:09w9w
+Footingsx
+categoriesy
+Eme7y
+Foundation Concrete#4755692026-06-08 20:13:09w,x
+.,Ae
+Site Cleari
+Foundation Concretey
+categoriesz
+%aration
+Reinforcement Steel#4755692026-06-08 20:13:09w7y
+Reinforcement Steelz
+categories{
+ation
+Late Paymen,{
+Formwork#4755692026-06-08 20:13:09w7z
+Formwork{ri
+Qi}O
+categories|
+Columns#4755692026-06-08 20:13:09w,{
+9Permit Consultancyi
+Quantit
+Columns|
+categories}
+Mo)}
+Beams#4755692026-06-08 20:13:09w+|
+/Permit Consultancyi
+Beams}
+categories~
+.H<f
+Ban)~
+Slabs#4755692026-06-08 20:13:09w)}
+Slabs~
+categories
+Home Automation Devi-
+Blockwork#4755692026-06-08 20:13:09w)~
+!Permit Consultancyi
+Projec
+Blockwork
+H_>6
+WeRF
+Curtains & Blin4
+Structural Steel#4755692026-06-08 20:13:09w-
+Structural Steel
+@4NTM
+te Clearing 
+Air Condit1
+Waterproofing#4755692026-06-08 20:13:09w4
+Waterproofing
+ Clearing 
+Kitc3
+Retaining Walls#4755692026-06-08 20:13:09w1
+Retaining Walls
+wlearing 
+Offi*
+Roofing#1E293B2026-06-08 20:13:093
+Aaring 
+Living Room Furniture 3
+Roof Structure#4755692026-06-08 20:13:09
+Roof Structure
+Ek| H
+ing 
+Compliance Inspection0
+Roof Sheets#4755692026-06-08 20:13:09
+Roof Sheets
+Fire Extinguish/
+Roof Tiles#4755692026-06-08 20:13:09
+Roof Tiles
+Safet4
+Roof Insulation#4755692026-06-08 20:13:09
+Roof Insulation
+Public Liability8
+Waterproof Membrane#4755692026-06-08 20:13:09
+Waterproof Membrane
+Gutters#4755692026-06-08 20:13:09
+Permit Consultan
+Gutters
+b=y@
+emolition 
+Temporary Utility Connecti.
+Downpipes#4755692026-06-08 20:13:09
+Downpipes
+olition 
+Mobile Communicati3
+Roof Flashings#4755692026-06-08 20:13:09
+Roof Flashings
+ition 
+Internet Servi.
+Skylights#4755692026-06-08 20:13:09
+Skylights
+hion 
+Construct8
+Roofing Accessories#4755692026-06-08 20:13:09
+Roofing Accessories
+Labor Mea-
+Contractor#1E293B2026-06-08 20:13:098
+Main Contractor#4755692026-06-08 20:13:09
+uOw/
+Main Contractor
+.]ll
+Civil Contractor#4755692026-06-08 20:13:09
+Civil Contractor
+.$en.
+Structural Contractor#4755692026-06-08 20:13:09
+Structural Contractor
+Rxcavation 
+Lab7
+Roofing Contractor#4755692026-06-08 20:13:09
+Roofing Contractor
+avation 
+Equip:
+Mechanical Contractor#4755692026-06-08 20:13:09
+Mechanical Contractor
+ation 
+Scaffol:
+Electrical Contractor#4755692026-06-08 20:13:09
+.-v)
+Electrical Contractor
+ion 
+Powe8
+Plumbing Contractor#4755692026-06-08 20:13:09
+8Dc~T
+Plumbing Contractor
+._e8G`
+Carpentry Contractor#4755692026-06-08 20:13:09
+Surv
+Carpentry Contractor
+Pav8
+Painting Contractor#4755692026-06-08 20:13:09
+m{Nh
+Painting Contractor
+Finishing Contractor#4755692026-06-08 20:13:09
+b=W1
+Finishing Contractor
+External Stairs ;
+Landscaping Contractor#4755692026-06-08 20:13:09
+LOther Expenses (Ready to Occupy)Q#
+Landscaping Contractor
+Yp <
+oackfilling 
+Driveway Con:
+Specialist Contractor#4755692026-06-08 20:13:09
+Specialist Contractor
+.'!.
+?kfilling 
+Mechanical#1E293B2026-06-08 20:13:09:
+R9![M
+illing 
+Exterior P;
+Air Conditioning Units#4755692026-06-08 20:13:09
+0Other Expenses (Ready to Occupy)Q#
+Miscell
+Air Conditioning Units
+ling 
+Glass Wo8
+Ventilation Systems#4755692026-06-08 20:13:09
+Ventilation Systems
+Decorative Finishes 1
+Exhaust Fans#4755692026-06-08 20:13:09
+Exhaust Fans
+Ceiling Wo,
+Ducting#4755692026-06-08 20:13:09
+Ducting
+Water Pumps#4755692026-06-08 20:13:09
+Water Pumps
+Wall Putty;
+Generator Installation#4755692026-06-08 20:13:09
+Generator Installation
+Plumbing Testin9
+Mechanical Equipment#4755692026-06-08 20:13:09
+Mechanical Equipment
+xading & Leveling 
+Mechanical Accessories#4755692026-06-08 20:13:09
+Mechanical Accessories
+9ing & Leveling 
+Testing & Commissioning#4755692026-06-08 20:13:09
+Testing & Commissioning
+g & Leveling 
+Sep-
+Electrical#1E293B2026-06-08 20:13:09<
+& Leveling 
+Water Su:
+Main Power Connection#4755692026-06-08 20:13:09
+Main Power Connection
+.jug
+Leveling 
+Data Netwo6
+Electrical Wiring#4755692026-06-08 20:13:09
+2Laterite Bricks (Ready to Occupy)L"
+Wood Acq
+Electrical Wiring
+cveling 
+Conduits#4755692026-06-08 20:13:09
+Conduits
+(ling 
+Interi8
+Distribution Boards#4755692026-06-08 20:13:09
+Laterite Bricks (Read
+Distribution Boards
+Circuit Breakers#4755692026-06-08 20:13:09
+Circuit Breakers
+Electrical Wi-
+Switches#4755692026-06-08 20:13:09
+Switches
+Electric,
+Sockets#4755692026-06-08 20:13:09
+Sockets
+Mech6
+Interior Lighting#4755692026-06-08 20:13:09
+.(k\,k
+Plumbing (Fittings,
+Interior Lighting
+Y$hi
+Exterior Lighting#4755692026-06-08 20:13:09
+{Ready to OccupyH
+Miscellaneous (Fittings, Painting & Finishing)F
+Exterior Lighting
+il Testing 
+Ventilation System5
+Generator Wiring#4755692026-06-08 20:13:09
+eReady to OccupyH
+Miscellaneous (Fittings, 
+Generator Wiring
+ Testing 
+Mechanica1
+Solar System#4755692026-06-08 20:13:09
+Solar System
+ZQYZ
+esting 
+Landscapi0
+CCTV System#4755692026-06-08 20:13:09
+TReady to OccupyH
+Miscella
+CCTV System
+Dting 
+Data Network Cabling#4755692026-06-08 20:13:09
+:Ready to OccupyH
+Other Expenses (Fittings, Painting
+Data Network Cabling
+Electrical Contracto7
+Electrical Testing#4755692026-06-08 20:13:09
+"Ready to OccupyH
+Other Expe
+Electrical Testing
+Plumbing#1E293B2026-06-08 20:13:097
+Civil Contractor7
+Water Supply Pipes#4755692026-06-08 20:13:09
+Water Supply Pipes
+Roofing Accessories3
+Drainage Pipes#4755692026-06-08 20:13:09
+Ready to O
+Drainage Pipes
+4Dewatering 
+Sewer Connection#4755692026-06-08 20:13:09
+Sewer Connection
+watering 
+Septic Tank#4755692026-06-08 20:13:09
+Septic Tank
+tering 
+Roof/
+Water Tank#4755692026-06-08 20:13:09
+Water Tank
+ring 
+Ret/
+Water Pump#4755692026-06-08 20:13:09
+Water Pump
+Blockwo1
+Water Heater#4755692026-06-08 20:13:09
+Water Heater
+Kitchen Plumbing#4755692026-06-08 20:13:09
+QLaterite Bricks (Fittings, Painting & Finishing)B1
+Wood Acquire (Fittings, 
+Kitchen Plumbing
+Footing6
+Bathroom Plumbing#4755692026-06-08 20:13:09
+:Laterite Bricks (Fittings, Painting & Finishing)B1
+Bathroom Plumbing
+Site Access Ro6
+Plumbing Fixtures#4755692026-06-08 20:13:09
+Plumbing Fixtures
+.^m4
+Construction Stages#3B82F6building-2Main construction phases tied to loan disbursemen
+Plumbing Accessories
+Plumbing Accessories#4755692026-06-08 20:13:09
+.)Ir
+Plumbing Testing
+Plumbing Testing#4755692026-06-08 20:13:09
+#Laterite Bricks (Fittings, Pain
+Interior Finishes#1E293B2026-06-08 20:13:095
+Lateri
+Internal Plastering
+Internal Plastering#4755692026-06-08 20:13:09
+.r^<Dg
+Wall Putty
+Wall Putty#4755692026-06-08 20:13:09
+.An:K&
+`Other Expenses (Flooring & Joineries)=(
+Plumbing 
+Interior Painting
+Qo*X
+Interior Painting#4755692026-06-08 20:13:09
+OOther Expenses (Flooring & Joineries)=(
+Miscellaneous (Flooring & Joineri
+Floor Tiles
+Ez(.
+Floor Tiles#4755692026-06-08 20:13:09
+nn"5
+Wall Tiles
+Wall Tiles#4755692026-06-08 20:13:09
+Timber Flooring
+Timber Flooring#4755692026-06-08 20:13:09
+Vinyl Flooring
+Vinyl Flooring#4755692026-06-08 20:13:09
+<Other Expenses (Flooring & Joineries)=(
+Miscellaneous 
+Ceiling Works
+Ceiling Works#4755692026-06-08 20:13:09
+*Other Expenses (Flooring & Joineries)=
+Gypsum Board
+Gypsum Board#4755692026-06-08 20:13:09
+Other Expense
+Decorative Finishes
+Decorative Finishes#4755692026-06-08 20:13:09
+\Ze,
+?Laterite Bricks (Flooring & Joineries)8'
+Wood Acquire (Fl
+Interior Doors
+Interior Doors#4755692026-06-08 20:13:09
+,Laterite Bricks (Flooring & Joineries)8'
+Door Hardware
+Door Hardware#4755692026-06-08 20:13:09
+Glass Works
+Glass Works#4755692026-06-08 20:13:09
+Laterite Bricks (Flo
+Exterior Works#1E293B2026-06-08 20:13:090
+aOther Expenses (Plastering Completion)3)
+Exterior Plastering
+Exterior Plastering#4755692026-06-08 20:13:09
+Exterior Painting
+Exterior Painting#4755692026-06-08 20:13:09
+Cladding
+Cladding#4755692026-06-08 20:13:09
+Windows
+Windows#4755692026-06-08 20:13:09
+MOther Expenses (Plastering Completion)3)
+Miscellaneous (Plastering Comp
+Exterior Doors
+Exterior Doors#4755692026-06-08 20:13:09
+:Other Expenses (Plastering Completion)3)
+Miscellaneo
+Balcony Works
+Balcony Works#4755692026-06-08 20:13:09
+Veranda Works
+Veranda Works#4755692026-06-08 20:13:09
+Other Expenses (Plastering 
+Driveway Construction
+Driveway Construction#4755692026-06-08 20:13:09
+Other Ex
+Boundary Wall
+Boundary Wall#4755692026-06-08 20:13:09
+Gates
+Gates#4755692026-06-08 20:13:09
+@Laterite Bricks (Plastering Completion).(
+Wood Acquire (Pl
+External Stairs
+Ifth
+External Stairs#4755692026-06-08 20:13:09
+I~fW
+/Laterite Bricks (Plastering Completion).(
+Landscaping#1E293B2026-06-08 20:13:094
+Topsoil
+Topsoil#4755692026-06-08 20:13:09
+Laterite Bricks (Plaster
+Garden Plants
+Garden Plants#4755692026-06-08 20:13:09
+.pTN
+Trees
+Trees#4755692026-06-08 20:13:09
+Lawn/Turf
+Lawn/Turf#4755692026-06-08 20:13:09
+Irrigation System
+Irrigation System#4755692026-06-08 20:13:09
+pPlastering Completion*%
+Plumbin
+Garden Lighting
+Garden Lighting#4755692026-06-08 20:13:09
++iF 
+Paving Stones
+Paving Stones#4755692026-06-08 20:13:09
+ZPlastering Completion*%
+Miscellaneous (First F
+Decorative Rocks
+Decorative Rocks#4755692026-06-08 20:13:09
+Water Features
+Water Features#4755692026-06-08 20:13:09
+Outdoor Furniture
+Outdoor Furniture#4755692026-06-08 20:13:09
+CPlastering Completion*%
+Equipment & Tools#1E293B2026-06-08 20:13:096
+3Plastering Completion*%
+Other Expenses (First
+Hand Tools
+Hand Tools#4755692026-06-08 20:13:09
+Power Tools
+Power Tools#4755692026-06-08 20:13:09
+Tool Rental
+Tool Rental#4755692026-06-08 20:13:09
+Equipment Rental
+Equipment Rental#4755692026-06-08 20:13:09
+Scaffolding
+Scaffolding#4755692026-06-08 20:13:09
+Generator Rental
+Generator Rental#4755692026-06-08 20:13:09
+Fuel for Equipment
+Fuel for Equipment#4755692026-06-08 20:13:09
+SOther Expenses (Ground Floor Roof)
+Equipment Maintenance
+Equipment Maintenance#4755692026-06-08 20:13:09
+Equipment Repairs
+Land PurchaseW
+Formwork{
+Environmental Assessmentk'
+Engineer Contract (Ready to Occupy)I-
+Engineer Contract (Plastering Completion)+)
+Engineer Contract (Flooring & Joineries)56
+Engineer Contract (Fittings, Painting & Finishing)?(
+Electrical (Ready to Occupy)N&
+Electrical (Plastering Completion)0"
+Electrical (Flooring & Joineries):/
+Electrical (Fittings, Painting & Finishing)D!
+Electrical (First Floor Roof)&
+Construction Stages,
+Construction Materials (Ready to Occupy)M2
+Construction Materials (Plastering Completion)/.
+Construction Materials (Flooring & Joineries)9;
+Construction Materials (Fittings, Painting & Finishing)C-
+Construction Materials (First Floor Roof)%
+Carpentry (Ready to Occupy)J%
+Carpentry (Plastering Completion),!
+Carpentry (Flooring & Joineries)6.
+Carpentry (Fittings, Painting & Finishing)@ 
+Carpentry (First Floor Roof)"
+Equipment Repairs#4755692026-06-08 20:13:09
+Consumables
+Consumables#4755692026-06-08 20:13:09
+Labor & Contractors#1E293B2026-06-08 20:13:090
+Skilled Labor
+Skilled Labor#4755692026-06-08 20:13:09
+..oW
+\Nw!
+General Labor
+General Labor#4755692026-06-08 20:13:09
+Carpenter Wages
+Carpenter Wages#4755692026-06-08 20:13:09
+Mason Wages
+Mason Wages#4755692026-06-08 20:13:09
+.yZ,
+Electrician Wages
+Electrician Wages#4755692026-06-08 20:13:09
+C)G_=
+Plumber Wages
+Plumber Wages#4755692026-06-08 20:13:09
+Painter Wages
+Painter Wages#4755692026-06-08 20:13:09
+.p-j
+Helper Wages
+Helper Wages#4755692026-06-08 20:13:09
+Overtime Wages
+Overtime Wages#4755692026-06-08 20:13:09
+Labor Accommodation
+Labor Accommodation#4755692026-06-08 20:13:09
+Labor Meals
+Labor Meals#4755692026-06-08 20:13:09
+Labor Transport
+Labor Transport#4755692026-06-08 20:13:09
+Utilities#1E293B2026-06-08 20:13:094
+Construction Electricity
+Construction Electricity#4755692026-06-08 20:13:09
+Construction Water
+Construction Water#4755692026-06-08 20:13:09
+Internet Service
+Internet Service#4755692026-06-08 20:13:09
+Telephone Service
+Telephone Service#4755692026-06-08 20:13:09
+'(0"
+Mobile Communication
+Mobile Communication#4755692026-06-08 20:13:09
+Generator Fuel
+Generator Fuel#4755692026-06-08 20:13:09
+Temporary Utility Connections
+Temporary Utility Connections#4755692026-06-08 20:13:09
+Safety & Insurance#1E293B2026-06-08 20:13:09B
+Construction Stages#3B82F6building-2Main construction phases tied to loan disbu
+Worker Insurance
+Worker Insurance#4755692026-06-08 20:13:09
+Builder's Risk Insurance
+Builder's Risk Insurance#4755692026-06-08 20:13:09
+Public Liability Insurance
+Public Liability Insurance#4755692026-06-08 20:13:09
+Site Security
+Site Security#4755692026-06-08 20:13:09
+PPE Equipment
+PPE Equipment#4755692026-06-08 20:13:09
+.~VO
+Safety Training
+Safety Training#4755692026-06-08 20:13:09
+First Aid Supplies
+First Aid Supplies#4755692026-06-08 20:13:09
+Fire Extinguishers
+.M ]ei
+Fire Extinguishers#4755692026-06-08 20:13:09
+Safety Signage
+Safety Signage#4755692026-06-08 20:13:09
+Compliance Inspection
+Compliance Inspection#4755692026-06-08 20:13:09
+Furniture & Appliances#1E293B2026-06-08 20:13:09:
+Living Room Furniture
+Living Room Furniture#4755692026-06-08 20:13:09
+Bedroom Furniture
+Bedroom Furniture#4755692026-06-08 20:13:09
+Dining Furniture
+Dining Furniture#4755692026-06-08 20:13:09
+@f!V
+Office Furniture
+Office Furniture#4755692026-06-08 20:13:09
+Outdoor Furniture (Furniture & Appliances)
+Outdoor Furniture (Furniture & Appliances)#4755692026-06-08 20:13:09
+Kitchen Appliances
+Kitchen Appliances#4755692026-06-08 20:13:09
+OB\.
+Laundry Appliances
+Laundry Appliances#4755692026-06-08 20:13:09
+Air Conditioners
+Air Conditioners#4755692026-06-08 20:13:09
+.|X>
+Decorative Lighting
+Decorative Lighting#4755692026-06-08 20:13:09
+Curtains & Blinds
+Curtains & Blinds#4755692026-06-08 20:13:09
+.vYTv
+Mirrors
+Mirrors#4755692026-06-08 20:13:09
+Shelving
+Shelving#4755692026-06-08 20:13:09
+Laterite Bricks (Fittings,
+.MZ>
+JLaterite Bricks (First Floor Roof)$
+Home Automation Devices
+Laterite Bricks (Fittings, Painting & Finishing)B&
+Home Automation Devices#4755692026-06-08 20:13:09
+5Laterite Bricks (First Floor Roof)$
+Landscapin
+Financing Costs#1E293B2026-06-08 20:13:09<
+Loan Interest
+Loan Interest#4755692026-06-08 20:13:09
+#Laterite Bricks (First Floor Ro
+Bank Charges
+Bank Charges#4755692026-06-08 20:13:09
+Loan Processing Fees
+6+)s
+Loan Processing Fees#4755692026-06-08 20:13:09
+.81F1
+1o+?
+Mortgage Fees
+Mortgage Fees#4755692026-06-08 20:13:09
+Financial Advisory Fees
+/q=hZ
+Financial Advisory Fees#4755692026-06-08 20:13:09
+Laterite Bricks (Fittin
+Currency Exchange Charges
+.gTe
+Currency Exchange Charges#4755692026-06-08 20:13:09
+Carpentry (Fo
+.>M'
+Formwork{gna
+Tele
+}Roofing Accessories
+lRoof Insulation
+"Roofing
+zStructural Steel
+#Site Preparationl
+Plumbing D
+Late Payment Charges
+Late Payment Charges#4755692026-06-08 20:13:09
+Site Access Roadu
+Contingency#1E293B2026-06-08 20:13:099
+zF2%
+Design Changes
+Design Changes#4755692026-06-08 20:13:09
+Variation Orders#4755692026-06-08 20:13:09
+Variation Orders
+^Roofing Accessories
+Material Price Escalation
+Material Price Escalation#4755692026-06-08 20:13:09
+Form
+Emergency Repairs
+Emergency Repairs#4755692026-06-08 20:13:09
+Rework Costs#4755692026-06-08 20:13:09
+Rework Costs
+Unexpected Site Conditions#4755692026-06-08 20:13:09
+Unexpected Site Conditions
+.YW#
+ERoofing Accessories
+Miscellaneous Costs
+Miscellaneous Costs#4755692026-06-08 20:13:09
+Wood Acquisition#1E293B2026-06-08 20:13:098
+.lly
+Hardwood
+Hardwood#4755692026-06-08 20:13:09
+Softwood#4755692026-06-08 20:13:09
+Softwood
+iECX
+Timber Beams#4755692026-06-08 20:13:09
+Timber Beams
+._|X
+Timber Posts#4755692026-06-08 20:13:09
+Timber Posts
+Plywood#4755692026-06-08 20:13:09
+Plywood
+1Roofing Accessories
+Marine Plywood
+Marine Plywood#4755692026-06-08 20:13:09
+!Roofing Accessories
+Ready 
+MDF Boards
+M7P2O)
+MDF Boards#4755692026-06-08 20:13:09
+Particle Boards
+Particle Boards#4755692026-06-08 20:13:09
+Veneer Sheets#4755692026-06-08 20:13:09
+Veneer Sheets
+#Sit
+Imported Timber
+Imported Timber#4755692026-06-08 20:13:09
+Local Timber
+Local Timber#4755692026-06-08 20:13:09
+Timber Transport#4755692026-06-08 20:13:09
+Timber Transport
+Timber Treatment#4755692026-06-08 20:13:09
+Timber Treatment
+Timber Storage#4755692026-06-08 20:13:09
+Timber Storage
+.>Ey
+Timber Waste#4755692026-06-08 20:13:09
+Timber Waste
+Foun
+Carpentry#1E293B2026-06-08 20:13:091
+Kitchen Cabinets
+Kitchen Cabinets#4755692026-06-08 20:13:09
+Wardrobes#4755692026-06-08 20:13:09
+Wardrobes
+.MF:
+.Nb1
+Shelving (Carpentry)#4755692026-06-08 20:13:09
+Shelving (Carpentry)
+Foundation Concre
+Doors
+Doors#4755692026-06-08 20:13:09
+.lW8
+Door Frames
+Door Frames#4755692026-06-08 20:13:09
+Window Frames#4755692026-06-08 20:13:09
+Window Frames
+Staircases#4755692026-06-08 20:13:09
+Staircases
+Skirting Boards#4755692026-06-08 20:13:09
+Z,G]
+Skirting Boards
+Fuel fo
+Architraves
+Architraves#4755692026-06-08 20:13:09
+Furniture & A
+Ceiling Woodwork
+Ceiling Woodwork#4755692026-06-08 20:13:09
+.uIwjR
+Wall Paneling#4755692026-06-08 20:13:09
+Wall Paneling
+Decking
+Decking#4755692026-06-08 20:13:09
+Surveying Fe
+Pergolas
+z&/)
+Pergolas#4755692026-06-08 20:13:09
+Built-in Furniture
+Built-in Furniture#4755692026-06-08 20:13:09
+Construction Stages#3B82F6building-2Main construction phases tied to loan
+TV Units
+.v%3
+TV Units#4755692026-06-08 20:13:09
+Vanity Units
+Vanity Units#4755692026-06-08 20:13:09
+Custom Furniture
+Custom Furniture#4755692026-06-08 20:13:09
+Tempor
+Installation Materials
+Installation Materials#4755692026-06-08 20:13:09
+9gY)
+Carpentry Consumables
+Carpentry Consumables#4755692026-06-08 20:13:09
+Workshop Expenses
+Workshop Expenses#4755692026-06-08 20:13:09
+.v?DZD>
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc4OTE5NTAzLCJleHAiOjE3Nzk1MjQzMDN9.HmL2eyt-3z8wHndMqebT7IzAVm-RK_Y_Jvo0-QEh0zc2026-05-23 08:18:232026-05-16 08:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgwOTgwMDMyLCJleHAiOjE3ODE1ODQ4MzJ9.tiA1NXM-RIT7LHCMJTEnj6JHX-NkT_PSxjAvRk6-xXI2026-06-16 04:40:322026-06-09 04:40:32
+333jaikjsjai@gmail.comjai$2b$10$p32lBuIK1/ILAwFYo3XWA.uDuRHcUPWXjo2VCkWSr3purOPsBGUaWadminactive2026-06-09 04:40:322026-05-16 12:08:022026-06-08 19:29:41
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgwOTg0MjIyLCJleHAiOjE3ODE1ODkwMjJ9.9AbtecgLuqnRuj8UlZ6CvngE2EioO6OtFJAzjfKIvLo2026-06-16 05:50:222026-06-09 05:50:22
+333jaikjsjai@gmail.comjai$2b$10$p32lBuIK1/ILAwFYo3XWA.uDuRHcUPWXjo2VCkWSr3purOPsBGUaWadminactive2026-06-09 05:50:222026-05-16 12:08:022026-06-08 19:29:41
+=jck
+08.Ready to Occupyactive-
+07.Fitting, Painting & Finishingactive$
+06.Flooring & Joineriesactive%
+05.Plastering Completionactive 
+04.First Floor Roofactive!
+03.Ground Floor Roofactive+
+02.Ground Floor Lintel Castingactive
+01.Foundationactive
+Engineer Contract (First Floor Roof)#94A3B8tagEngineer Contract expenses for First Floor Roof2026-06-08 18:32:01 
+Engineer Contract (Fittings, Painting & Finishing)#94A3B8tagEngineer Contract expenses for Fittings, Painting & Finishing2026-06-08 18:32:01>
+Engineer Contract (Flooring & Joineries)#94A3B8tagEngineer Contract expenses for Flooring & Joineries2026-06-08 18:32:014
+Engineer Contract (Plastering Completion)#94A3B8tagEngineer Contract expenses for Plastering Completion2026-06-08 18:32:01*
+Engineer Contract (Ready to Occupy)#94A3B8tagEngineer Contract expenses for Ready to Occupy2026-06-08 18:32:01H
+8Fittings, Painting & Finishing>
+6Ground Floor Roof
+ Ground Floor Lintel Casting
+.Fittings, Painting & Finishing>
+First F
+Bank
+Bank#EF4444landmarkEMI tracking, disbursement records, interest payments2026-06-09 06:06:29T6
+^";*
+$Fittings, Painting & Finishing>
+Cash
+Cash#3B82F6tag2026-06-09 06:06:48Te
+Cash#3B82F6tagIn-Hand2026-06-09 06:06:48T7
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgwOTk3NDA4LCJleHAiOjE3ODE2MDIyMDh9.xjy1j2Am_K6IP5U8jbBNGdci8jnlzuTFoxj7SD3JZsA2026-06-16 09:30:082026-06-09 09:30:08
+333jaikjsjai@gmail.comjai$2b$10$p32lBuIK1/ILAwFYo3XWA.uDuRHcUPWXjo2VCkWSr3purOPsBGUaWadminactive2026-06-09 09:30:082026-05-16 12:08:022026-06-08 19:29:41
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgxMjA0Njc1LCJleHAiOjE3ODE4MDk0NzV9.EVF7stMYlRDnOqhm-E7ckPClr1LJ0ZOgNHXavbPJZ-A2026-06-18 19:04:352026-06-11 19:04:35
+333jaikjsjai@gmail.comjai$2b$10$p32lBuIK1/ILAwFYo3XWA.uDuRHcUPWXjo2VCkWSr3purOPsBGUaWadminactive2026-06-11 19:04:352026-05-16 12:08:022026-06-08 19:29:41
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgxMjA1MDk4LCJleHAiOjE3ODE4MDk4OTh9.MEBDqFLVaWiO9IV5yptyjapnjmDbfFTrS45Oy2xL4eA2026-06-18 19:11:382026-06-11 19:11:38
+333jaikjsjai@gmail.comjai$2b$10$p32lBuIK1/ILAwFYo3XWA.uDuRHcUPWXjo2VCkWSr3purOPsBGUaWadminactive2026-06-11 19:11:382026-05-16 12:08:022026-06-08 19:29:41
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgxMjA4OTY3LCJleHAiOjE3ODE4MTM3Njd9.Cf-vTCBXOblwbsJegH8lfej90xZ_mYMG-Yj5be0ZxAo2026-06-18 20:16:072026-06-11 20:16:07
+333jaikjsjai@gmail.comjai$2b$10$p32lBuIK1/ILAwFYo3XWA.uDuRHcUPWXjo2VCkWSr3purOPsBGUaWadminactive2026-06-11 20:16:072026-05-16 12:08:022026-06-08 19:29:41
+user_sessions 
+33eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzgxMjU4OTkxLCJleHAiOjE3ODE4NjM3OTF9.EOgNIz2bOA3EWVk4TtNDlaol4c_yIiopIYV4vn2qWaw2026-06-19 10:09:512026-06-12 10:09:51
+333Administratoradmin@example.comadmin$2b$10$dKoxL6VJVHNsfFo.0ADSl.jU604C5DdBFt8si3LRNmAMEOxJoLgciadminactive2026-06-12 10:09:512026-05-16 07:54:332026-05-16 07:54:33
+_SQLite format 3
+Carpentry (First Floor Roof)#94A3B8tagCarpentry expenses for First Floor Roof2026-06-12 10:15:29 z!
+Engineer Contract (First Floor Roof)#94A3B8tagEngineer Contract expenses for First Floor Roof2026-06-12 10:15:29 ` 
+First Floor Roof#6366F1hammerConstruction Stage: First Floor Roof2026-06-12 10:15:29
+Other Expenses (Ground Floor Roof)#94A3B8tagOther Expenses expenses for Ground Floor Roof2026-06-12 10:15:29
+Miscellaneous (Ground Floor Roof)#94A3B8tagMiscellaneous expenses for Ground Floor Roof2026-06-12 10:15:29
+Plumbing (Ground Floor Roof)#94A3B8tagPlumbing expenses for Ground Floor Roof2026-06-12 10:15:29
+Electrical (Ground Floor Roof)#94A3B8tagElectrical expenses for Ground Floor Roof2026-06-12 10:15:29
+Construction Materials (Ground Floor Roof)#94A3B8tagConstruction Materials expenses for Ground Floor Roof2026-06-12 10:15:29
+Laterite Bricks (Ground Floor Roof)#94A3B8tagLaterite Bricks expenses for Ground Floor Roof2026-06-12 10:15:29
+Wood Acquire (Ground Floor Roof)#94A3B8tagWood Acquire expenses for Ground Floor Roof2026-06-12 10:15:29
+Carpentry (Ground Floor Roof)#94A3B8tagCarpentry expenses for Ground Floor Roof2026-06-12 10:15:29
+Engineer Contract (Ground Floor Roof)#94A3B8tagEngineer Contract expenses for Ground Floor Roof2026-06-12 10:15:29
+Ground Floor Roof#6366F1hammerConstruction Stage: Ground Floor Roof2026-06-12 10:15:29
+Other Expenses (Ground Floor Lintel Casting)#94A3B8tagOther Expenses expenses for Ground Floor Lintel Casting2026-06-12 10:15:29
+Miscellaneous (Ground Floor Lintel Casting)#94A3B8tagMiscellaneous expenses for Ground Floor Lintel Casting2026-06-12 10:15:29
+Plumbing (Ground Floor Lintel Casting)#94A3B8tagPlumbing expenses for Ground Floor Lintel Casting2026-06-12 10:15:29
+Electrical (Ground Floor Lintel Casting)#94A3B8tagElectrical expenses for Ground Floor Lintel Casting2026-06-12 10:15:29
+Construction Materials (Ground Floor Lintel Casting)#94A3B8tagConstruction Materials expenses for Ground Floor Lintel Casting2026-06-12 10:15:29
+Laterite Bricks (Ground Floor Lintel Casting)#94A3B8tagLaterite Bricks expenses for Ground Floor Lintel Casting2026-06-12 10:15:29
+Wood Acquire (Ground Floor Lintel Casting)#94A3B8tagWood Acquire expenses for Ground Floor Lintel Casting2026-06-12 10:15:29
+Carpentry (Ground Floor Lintel Casting)#94A3B8tagCarpentry expenses for Ground Floor Lintel Casting2026-06-12 10:15:29
+Engineer Contract (Ground Floor Lintel Casting)#94A3B8tagEngineer Contract expenses for Ground Floor Lintel Casting2026-06-12 10:15:29
+Ground Floor Lintel Casting#6366F1hammerConstruction Stage: Ground Floor Lintel Casting2026-06-12 10:15:29
+Other Expenses (Basement)#94A3B8tagOther Expenses expenses for Basement2026-06-12 10:15:29
+Miscellaneous (Basement)#94A3B8tagMiscellaneous expenses for Basement2026-06-12 10:15:29
+Plumbing (Basement)#94A3B8tagPlumbing expenses for Basement2026-06-12 10:15:29
+Electrical (Basement)#94A3B8tagElectrical expenses for Basement2026-06-12 10:15:29
+Construction Materials (Basement)#94A3B8tagConstruction Materials expenses for Basement2026-06-12 10:15:29
+Laterite Bricks (Basement)#94A3B8tagLaterite Bricks expenses for Basement2026-06-12 10:15:29
+Wood Acquire (Basement)#94A3B8tagWood Acquire expenses for Basement2026-06-12 10:15:29
+Carpentry (Basement)#94A3B8tagCarpentry expenses for Basement2026-06-12 10:15:29
+Engineer Contract (Basement)#94A3B8tagEngineer Contract expenses for Basement2026-06-12 10:15:29
+Basement#6366F1hammerConstruction Stage: Basement2026-06-12 10:15:29
+Construction Stages#3B82F6building-2Main construction phases tied to loan disbursements2026-06-1
+aterings
+2026-06-12T10:15:29.636ZInitial Land Advance / Purchase
+ROwner ContributionInitial OC spent amount2026-06-12 10:15:292026-06-12 10:15:29
+332026-06-12T10:15:29.636ZCash/BankOwner ContributionOC-2001
+`activeSelf-funded portion2026-06-12 10:15:29
+k32026-06-12T10:15:29.635ZLoanBank Construction LoanLOAN-1001[
+activeDisbursed in 7 tranches of 9L + 1 tranche of 6L2026-06-12 10:15:29
+Construction Stages#3B82F6building-2Main construction phases tied to loan disbursements2026-06-12 10:15:29
+2I?!
+, Painting & Finishi94A3B8tagLaterit, Painting & Finishi94A3B8tagLaterite Bricks expenses for Fittings, Painting & Finishing2026-06-08 18:32:01>
+Wood Acquire (Fittings, Painting & Finishing)#94A3B8tagWood Acquire expenses f2
+Mason Wages#47556920:
+PPE Equipment#4755692026-06-02
+Cash#3B82F6tagIn-Hand2026-06-09 06:06:48Te
+Loan Account#EF4444landmarkEMI tracking, disbursement records, interest payments2026-06-12 10:15:29hS
+Owner Contribution (OC)#F59E0BwalletTracking self-funded portion expenses2026-06-12 10:15:29
+Land & Property#10B981mapLand purchase, registration, and survey costs2026-06-12 10:15:29=
+Other Expenses (Ready to Occupy)#94A3B8tagOther Expenses expenses for Ready to Occupy2026-06-12 10:15:29HpP
+Miscellaneous (Ready to Occupy)#94A3B8tagMiscellaneous expenses for Ready to Occupy2026-06-12 10:15:29HfO
+Plumbing (Ready to Occupy)#94A3B8tagPlumbing expenses for Ready to Occupy2026-06-12 10:15:29HjN
+Electrical (Ready to Occupy)#94A3B8tagElectrical expenses for Ready to Occupy2026-06-12 10:15:29H
+Construction Materials (Ready to Occupy)#94A3B8tagConstruction Materials expenses for Ready to Occupy2026-06-12 10:15:29HtL
+Laterite Bricks (Ready to Occupy)#94A3B8tagLaterite Bricks expenses for Ready to Occupy2026-06-12 10:15:29HnK
+Wood Acquire (Ready to Occupy)#94A3B8tagWood Acquire expenses for Ready to Occupy2026-06-12 10:15:29HhJ
+Carpentry (Ready to Occupy)#94A3B8tagCarpentry expenses for Ready to Occupy2026-06-12 10:15:29HxI
+Engineer Contract (Ready to Occupy)#94A3B8tagEngineer Contract expenses for Ready to Occupy2026-06-12 10:15:29H[H
+Ready to Occupy#6366F1hammerConstruction Stage: Ready to Occupy2026-06-12 10:15:29
+Other Expenses (Fittings, Painting & Finishing)#94A3B8tagOther Expenses expenses for Fittings, Painting & Finishing2026-06-12 10:15:29>
+Miscellaneous (Fittings, Painting & Finishing)#94A3B8tagMiscellaneous expenses for Fittings, Painting & Finishing2026-06-12 10:15:29>
+Plumbing (Fittings, Painting & Finishing)#94A3B8tagPlumbing expenses for Fittings, Painting & Finishing2026-06-12 10:15:29>
+Electrical (Fittings, Painting & Finishing)#94A3B8tagElectrical expenses for Fittings, Painting & Finishing2026-06-12 10:15:29>
+Construction Materials (Fittings, Painting & Finishing)#94A3B8tagConstruction Materials expenses for Fittings, Painting & Finishing2026-06-12 10:15:29>
+Plumbing (Ready to Occupy)#94A3B8tagPlumbing expenses for Ready to Occupy2026-06-08 18:32:01H
+Laterite Bricks (Fittings, Painting & Finishing)#94A3B8tagLaterite Bricks expenses for Fittings, Painting & Finishing2026-06-12 10:15:29>
+Wood Acquire (Fittings, Painting & Finishing)#94A3B8tagWood Acquire expenses for Fittings, Painting & Finishing2026-06-12 10:15:29>
+Carpentry (Fittings, Painting & Finishing)#94A3B8tagCarpentry expenses for Fittings, Painting & Finishing2026-06-12 10:15:29>
+Engineer Contract (Fittings, Painting & Finishing)#94A3B8tagEngineer Contract expenses for Fittings, Painting & Finishing2026-06-12 10:15:29>|>
+Fittings, Painting & Finishing#6366F1hammerConstruction Stage: Fittings, Painting & Finishing2026-06-12 10:15:29
+Other Expenses (Flooring & Joineries)#94A3B8tagOther Expenses expenses for Flooring & Joineries2026-06-12 10:15:294z<
+Miscellaneous (Flooring & Joineries)#94A3B8tagMiscellaneous expenses for Flooring & Joineries2026-06-12 10:15:294p;
+Plumbing (Flooring & Joineries)#94A3B8tagPlumbing expenses for Flooring & Joineries2026-06-12 10:15:294t:
+Electrical (Flooring & Joineries)#94A3B8tagElectrical expenses for Flooring & Joineries2026-06-12 10:15:294
+Construction Materials (Flooring & Joineries)#94A3B8tagConstruction Materials expenses for Flooring & Joineries2026-06-12 10:15:294~8
+Laterite Bricks (Flooring & Joineries)#94A3B8tagLaterite Bricks expenses for Flooring & Joineries2026-06-12 10:15:294x7
+Wood Acquire (Flooring & Joineries)#94A3B8tagWood Acquire expenses for Flooring & Joineries2026-06-12 10:15:294r6
+Carpentry (Flooring & Joineries)#94A3B8tagCarpentry expenses for Flooring & Joineries2026-06-12 10:15:294
+Engineer Contract (Flooring & Joineries)#94A3B8tagEngineer Contract expenses for Flooring & Joineries2026-06-12 10:15:294h4
+Flooring & Joineries#6366F1hammerConstruction Stage: Flooring & Joineries2026-06-12 10:15:29
+Other Expenses (Plastering Completion)#94A3B8tagOther Expenses expenses for Plastering Completion2026-06-12 10:15:29*|2
+Miscellaneous (Plastering Completion)#94A3B8tagMiscellaneous expenses for Plastering Completion2026-06-12 10:15:29*r1
+Plumbing (Plastering Completion)#94A3B8tagPlumbing expenses for Plastering Completion2026-06-12 10:15:29*v0
+Electrical (Plastering Completion)#94A3B8tagElectrical expenses for Plastering Completion2026-06-12 10:15:29*
+Construction Materials (Plastering Completion)#94A3B8tagConstruction Materials expenses for Plastering Completion2026-06-12 10:15:29*
+Laterite Bricks (Plastering Completion)#94A3B8tagLaterite Bricks expenses for Plastering Completion2026-06-12 10:15:29*z-
+Wood Acquire (Plastering Completion)#94A3B8tagWood Acquire expenses for Plastering Completion2026-06-12 10:15:29*t,
+Carpentry (Plastering Completion)#94A3B8tagCarpentry expenses for Plastering Completion2026-06-12 10:15:29*
+Engineer Contract (Plastering Completion)#94A3B8tagEngineer Contract expenses for Plastering Completion2026-06-12 10:15:29*j*
+Plastering Completion#6366F1hammerConstruction Stage: Plastering Completion2026-06-12 10:15:29
+Other Expenses (First Floor Roof)#94A3B8tagOther Expenses expenses for First Floor Roof2026-06-12 10:15:29 r(
+Miscellaneous (First Floor Roof)#94A3B8tagMiscellaneous expenses for First Floor Roof2026-06-12 10:15:29 h'
+Plumbing (First Floor Roof)#94A3B8tagPlumbing expenses for First Floor Roof2026-06-12 10:15:29 l&
+Electrical (First Floor Roof)#94A3B8tagElectrical expenses for First Floor Roof2026-06-12 10:15:29 
+Construction Materials (First Floor Roof)#94A3B8tagConstruction Materials expenses for First Floor Roof2026-06-12 10:15:29 v$
+Laterite Bricks (First Floor Roof)#94A3B8tagLaterite Bricks expenses for First Floor Roof2026-06-12 10:15:29 p#
+Wood Acquire (First Floor Roof)#94A3B8tagWood Acquire expenses for First Floor Roof2026-06-12 10:15:29 
+*Plumbing
+>Int
+-Specialist Contractor
+6Mechanical Accessories
+Irriga
+Kitch
+lLabor Accommodation
+Structure & Foundati
+[Water Tank
+)Water Supply Pipes
+ Wall Tiles
+@Vinyl Flooring
+gLand Transfer Tax[
+QLand RegistrationX
+;Land PurchaseW
+)Land AcquisitionV
+:Plumbing (First Floor Roof)'
+Other Expenses (Ready to Occupy)Q
+kOther Expenses (Plastering Completion)3
+xOther Expenses (Ground Floor Roof)
+QOther Expenses (Ground Floor Lintel Casting)
+ Other Expenses (Foundation)
+Other Expenses (Fittings, Painting & Finishing)G
+&Other Expenses (First Floor Roof))#
+ Miscellaneous (Plastering Completion)2
+uMiscellaneous (Ground Floor Roof)
+OMiscellaneous (Ground Floor Lintel Casting)
+%Miscellaneous (First Floor Roof)(
+Laterite Bricks (Ready to Occupy)L
+Laterite Bricks (Plastering Completion).
+{Laterite Bricks (Ground Floor Roof)
+SLaterite Bricks (Ground Floor Lintel Casting)
+!Laterite Bricks (Foundation)
+.I;t
+<Wood Acquire (Ready to Occupy)K
+Wood Acquire (Plastering Completion)-
+rWood Acquire (Ground Floor Roof)
+MWood Acquire (Ground Floor Lintel Casting)
+Wood Acquire (Fittings, Painting & Finishing)A
+$Wood Acquire (First Floor Roof)#
+,Waterproofing
+zSurveying FeesZ
+<Site Preparationl
+%Roof Structure
+XRetaining Walls
+CReinforcement Steelz
++Ready to OccupyH
+-Project Managementh
+ePlumbing (Ready to Occupy)O
+FPlumbing (Plastering Completion)1
+!Plumbing (Ground Floor Roof)

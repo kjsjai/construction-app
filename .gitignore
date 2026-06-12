@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.env
+.env.*.local
+*.db
+*.sqlite
+*.sqlite3
+.DS_Store
+*.log
+.next/
+out/
+coverage/
+
+# Depending on your preference, you might want to ignore the backup directories:
+# client_backup/
+# client-next/
