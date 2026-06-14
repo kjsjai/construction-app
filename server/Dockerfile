@@ -2,24 +2,28 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-# Install dependencies
+# Install dependencies first (better layer caching)
 COPY package.json package-lock.json* ./
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 # Copy application source
 COPY . .
 
-# Set environment variables
+# Remove any local DB files that may have been copied (safety net)
+RUN rm -rf db/construction.db db/construction.db-shm db/construction.db-wal db/backups
+
+# Environment defaults (overridden by docker-compose / .env)
 ENV NODE_ENV=production
 ENV PORT=5000
-ENV DB_PATH=/data/database.sqlite
+ENV DB_PATH=/data/construction.db
 
-# Create directory for persistent data
+# Create persistent data directory
 RUN mkdir -p /data && chown -R node:node /data
 
 USER node
 
 EXPOSE 5000
 
-# Start server
-CMD ["npm", "start"]
+# --experimental-sqlite is a no-op (harmless) on Node versions where
+# node:sqlite is already unflagged, and required on some 22.x builds.
+CMD ["node", "--experimental-sqlite", "index.js"]

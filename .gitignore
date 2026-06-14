@@ -1,16 +1,32 @@
+# Dependencies
 node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build output
 dist/
+client/dist/
+
+# Environment files
 .env
 .env.*.local
+
+# Database files (do NOT commit your data)
 *.db
+*.db-shm
+*.db-wal
 *.sqlite
 *.sqlite3
-.DS_Store
-*.log
-.next/
-out/
-coverage/
+server/db/construction.db
+server/db/backups/
 
-# Depending on your preference, you might want to ignore the backup directories:
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# Optional: remove these from git history if you don't need them
 # client_backup/
 # client-next/
+# frontend/

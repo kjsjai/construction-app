@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getTokens, setTokens, removeTokens } from './auth';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001/api', // Use env var in production
+  baseURL: '/api', // Use env var in production
   headers: {
     'Content-Type': 'application/json',
   },
@@ -59,7 +59,7 @@ api.interceptors.response.use(
       }
 
       try {
-        const { data } = await axios.post('http://localhost:3001/api/auth/refresh', { refreshToken });
+        const { data } = await axios.post('/api/auth/refresh', { refreshToken });
         setTokens(data.accessToken, data.refreshToken);
         api.defaults.headers.common['Authorization'] = `Bearer ${data.accessToken}`;
         originalRequest.headers['Authorization'] = `Bearer ${data.accessToken}`;

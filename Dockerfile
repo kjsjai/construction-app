@@ -1,40 +1,29 @@
-# --- Build Stage for Frontend ---
-FROM node:20-alpine AS frontend-builder
-WORKDIR /app/client
-COPY client/package*.json ./
-RUN npm install
-COPY client/ .
-RUN npm run build
+FROM node:22-alpine
 
-# --- Build Stage for Backend ---
-FROM node:20-alpine AS backend-builder
-WORKDIR /app/server
-COPY server/package*.json ./
-# SQLite native bindings require python and build essentials
-RUN apk add --no-cache python3 make g++ 
-RUN npm install
-COPY server/ .
-
-# --- Final Production Image ---
-FROM node:20-alpine
 WORKDIR /app
 
-# Copy backend
-COPY --from=backend-builder /app/server ./server
-# Copy frontend build
-COPY --from=frontend-builder /app/client/dist ./client/dist
+# Install dependencies first (better layer caching)
+COPY package.json package-lock.json* ./
+RUN npm ci --omit=dev
 
-# Install global tools if needed, but concurrently is not needed in prod usually.
-# Instead of serving frontend through express or separate server, we can serve it through the express backend
-# Ensure backend package.json handles static files or we run them separately.
+# Copy application source
+COPY . .
 
-WORKDIR /app/server
+# Remove any local DB files that may have been copied (safety net)
+RUN rm -rf db/construction.db db/construction.db-shm db/construction.db-wal db/backups
+
+# Environment defaults (overridden by docker-compose / .env)
 ENV NODE_ENV=production
-ENV PORT=3000
-# Update the SQLite DB path to point to a volume
-ENV DB_PATH=/app/data/construction.db
+ENV PORT=5000
+ENV DB_PATH=/data/construction.db
 
-EXPOSE 3000
+# Create persistent data directory
+RUN mkdir -p /data && chown -R node:node /data
 
-# We need a startup script or command
-CMD ["npm", "start"]
+USER node
+
+EXPOSE 5000
+
+# --experimental-sqlite is a no-op (harmless) on Node versions where
+# node:sqlite is already unflagged, and required on some 22.x builds.
+CMD ["node", "--experimental-sqlite", "index.js"]
