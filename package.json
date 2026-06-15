@@ -1,6 +1,6 @@
 {
   "name": "construction-expense-tracker",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Full-Stack Construction Expense Tracker",
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
