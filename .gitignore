@@ -12,12 +12,12 @@ client/dist/
 .env.*.local
 
 # Database files (do NOT commit your data)
-*.db
-*.db-shm
-*.db-wal
-*.sqlite
-*.sqlite3
-server/db/construction.db
+# *.db
+# *.db-shm
+# *.db-wal
+# *.sqlite
+# *.sqlite3
+# server/db/construction.db
 server/db/backups/
 
 # Logs
